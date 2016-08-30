@@ -5,6 +5,7 @@
  */
 
 package interfaz;
+import clases.Persona;
 
 /**
  *
@@ -15,6 +16,8 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    Persona v[]= new Persona [5]; 
+    int cont =0;
     public Principal() {
         initComponents();
     }
@@ -132,7 +135,18 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGuardarActionPerformed
-        // TODO add your handling code here:
+        Persona p;
+        long identificacion;
+        String Primer_Nombre,Primer_Apellido;
+        
+        identificacion = Long.parseLong(txtIdentificacion.getText());
+        Primer_Nombre= txtPrimerNombre.getText();
+        Primer_Apellido = txtPrimerApellido.getText();
+        
+        p = new Persona ( identificacion,Primer_Nombre,Primer_Apellido);
+        
+        
+        
     }//GEN-LAST:event_cmbGuardarActionPerformed
 
     /**
