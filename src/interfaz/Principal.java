@@ -6,6 +6,7 @@
 
 package interfaz;
 import clases.Persona;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,9 @@ public class Principal extends javax.swing.JFrame {
     int cont =0;
     public Principal() {
         initComponents();
+        cmbGuardar.setEnabled(true);
+        cmbLimpiar.setEnabled(true);
+        cmbMostrar.setEnabled(false);
     }
 
     /**
@@ -71,8 +75,26 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Primer Apellido");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        txtIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdentificacionKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 110, -1));
+
+        txtPrimerNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrimerNombreKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtPrimerNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 110, -1));
+
+        txtPrimerApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrimerApellidoKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 110, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 250, 120));
@@ -139,15 +161,56 @@ public class Principal extends javax.swing.JFrame {
         long identificacion;
         String Primer_Nombre,Primer_Apellido;
         
+        if(txtIdentificacion.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese la Identificacion", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtIdentificacion.requestFocusInWindow();
+        }
+        else if (txtPrimerNombre.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Ingrese El Primer Nombre", "ERROR",JOptionPane.ERROR_MESSAGE);
+            txtPrimerNombre.requestFocusInWindow();
+        }
+        else if (txtPrimerApellido.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese El Primer Apellido","ERROR",JOptionPane.ERROR_MESSAGE);
+            txtPrimerApellido.requestFocusInWindow();
+        }else{
         identificacion = Long.parseLong(txtIdentificacion.getText());
         Primer_Nombre= txtPrimerNombre.getText();
         Primer_Apellido = txtPrimerApellido.getText();
         
         p = new Persona ( identificacion,Primer_Nombre,Primer_Apellido);
-        
-        
-        
+        }
+        cmbMostrar.setEnabled(true);
+        cmbGuardar.setEnabled(false);
+        cmbLimpiar.setEnabled(true);
     }//GEN-LAST:event_cmbGuardarActionPerformed
+
+    private void txtIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(Character.isLetter(c)) { 
+              getToolkit().beep(); 
+              evt.consume();}
+    }//GEN-LAST:event_txtIdentificacionKeyTyped
+
+    private void txtPrimerNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimerNombreKeyTyped
+        char c = evt.getKeyChar();
+        
+        if (!Character.isLetter(c)){
+            getToolkit() .beep();
+            evt.consume();
+        }
+    
+    }//GEN-LAST:event_txtPrimerNombreKeyTyped
+
+    private void txtPrimerApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimerApellidoKeyTyped
+        char c= evt.getKeyChar();
+        
+        if(!Character.isLetter(c)){
+           getToolkit().beep();
+           evt.consume();
+        }
+    }//GEN-LAST:event_txtPrimerApellidoKeyTyped
 
     /**
      * @param args the command line arguments
