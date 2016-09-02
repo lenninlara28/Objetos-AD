@@ -6,6 +6,7 @@
 
 package interfaz;
 import clases.Persona;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,13 +18,9 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    Persona v[]= new Persona [5]; 
-    int cont =0;
+    ArrayList<Persona> v =new ArrayList();
     public Principal() {
         initComponents();
-        cmbGuardar.setEnabled(true);
-        cmbLimpiar.setEnabled(true);
-        cmbMostrar.setEnabled(false);
     }
 
     /**
@@ -44,10 +41,13 @@ public class Principal extends javax.swing.JFrame {
         txtIdentificacion = new javax.swing.JTextField();
         txtPrimerNombre = new javax.swing.JTextField();
         txtPrimerApellido = new javax.swing.JTextField();
+        cmbSexo = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         cmbGuardar = new javax.swing.JButton();
         cmbMostrar = new javax.swing.JButton();
         cmbLimpiar = new javax.swing.JButton();
+        cmbListarMujeres = new javax.swing.JButton();
+        cmdCantidadDeMujeres = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
@@ -66,38 +66,42 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Identificacion");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Primer Nombre");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Primer Apellido");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         txtIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIdentificacionKeyTyped(evt);
             }
         });
-        jPanel2.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 110, -1));
+        jPanel2.add(txtIdentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 170, -1));
 
         txtPrimerNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrimerNombreKeyTyped(evt);
             }
         });
-        jPanel2.add(txtPrimerNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 110, -1));
+        jPanel2.add(txtPrimerNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 170, -1));
 
         txtPrimerApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrimerApellidoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 110, -1));
+        jPanel2.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 170, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 250, 120));
+        cmbSexo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cmbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino", "Indefinido" }));
+        jPanel2.add(cmbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 130, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 370, 250));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,21 +115,53 @@ public class Principal extends javax.swing.JFrame {
                 cmbGuardarActionPerformed(evt);
             }
         });
-        jPanel3.add(cmbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jPanel3.add(cmbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 23, 90, 30));
 
         cmbMostrar.setBackground(new java.awt.Color(0, 0, 0));
         cmbMostrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cmbMostrar.setForeground(new java.awt.Color(255, 255, 255));
         cmbMostrar.setText("Mostrar");
-        jPanel3.add(cmbMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        cmbMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMostrarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmbMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, 30));
 
         cmbLimpiar.setBackground(new java.awt.Color(0, 0, 0));
         cmbLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cmbLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         cmbLimpiar.setText("Limpiar");
-        jPanel3.add(cmbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        cmbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 90, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 160, 120));
+        cmbListarMujeres.setBackground(new java.awt.Color(0, 0, 0));
+        cmbListarMujeres.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cmbListarMujeres.setForeground(new java.awt.Color(255, 255, 255));
+        cmbListarMujeres.setText("Listar Mujeres");
+        cmbListarMujeres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbListarMujeresActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmbListarMujeres, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 130, 30));
+
+        cmdCantidadDeMujeres.setBackground(new java.awt.Color(0, 0, 0));
+        cmdCantidadDeMujeres.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cmdCantidadDeMujeres.setForeground(new java.awt.Color(255, 255, 255));
+        cmdCantidadDeMujeres.setText("Cantidad De Mujeres");
+        cmdCantidadDeMujeres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCantidadDeMujeresActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdCantidadDeMujeres, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 170, 30));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 260, 280));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,31 +171,29 @@ public class Principal extends javax.swing.JFrame {
         txtResultado.setRows(5);
         jScrollPane1.setViewportView(txtResultado);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 430, -1));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 500, 180));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 480, 140));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 560, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(556, 439));
+        setSize(new java.awt.Dimension(776, 632));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGuardarActionPerformed
         Persona p;
         long identificacion;
-        String Primer_Nombre,Primer_Apellido;
+        String Primer_Nombre,Primer_Apellido,sexo;
         
         if(txtIdentificacion.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Ingrese la Identificacion", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -176,12 +210,18 @@ public class Principal extends javax.swing.JFrame {
         identificacion = Long.parseLong(txtIdentificacion.getText());
         Primer_Nombre= txtPrimerNombre.getText();
         Primer_Apellido = txtPrimerApellido.getText();
+        sexo=cmbSexo.getSelectedItem().toString();
         
-        p = new Persona ( identificacion,Primer_Nombre,Primer_Apellido);
+        p = new Persona ( identificacion,Primer_Nombre,Primer_Apellido,sexo);
+        v.add(p);
+        
+        JOptionPane.showMessageDialog(this, "Persona Agregada Correctamente");
+        txtIdentificacion.setText("");
+        txtPrimerApellido.setText("");
+        txtPrimerNombre.setText("");
+        cmbSexo.setSelectedIndex(0);
+        txtIdentificacion.requestFocusInWindow();
         }
-        cmbMostrar.setEnabled(true);
-        cmbGuardar.setEnabled(false);
-        cmbLimpiar.setEnabled(true);
     }//GEN-LAST:event_cmbGuardarActionPerformed
 
     private void txtIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificacionKeyTyped
@@ -211,6 +251,76 @@ public class Principal extends javax.swing.JFrame {
            evt.consume();
         }
     }//GEN-LAST:event_txtPrimerApellidoKeyTyped
+
+    private void cmbMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMostrarActionPerformed
+       String aux;
+       txtResultado.setText("");
+       
+       if(v.isEmpty()){
+           txtResultado.setText("No Hay Personas Que Mostrar");
+       }else{
+       
+        for (int i = 0; i < v.size(); i++) {
+            aux="Persona No. " + (i+1)+"\n"
+                    + "Identificacion: "+v.get(i).getIdentificacion()+"\n"
+                    + "Primer Nombre: "+v.get(i).getPrimer_nombre()+"\n"
+                    + "Primer Apellido: "+v.get(i).getPrimer_apellido()+"\n"
+                    + "Sexo: "+v.get(i).getSexo()+"\n\n";
+            
+            txtResultado.append(aux);
+        }
+       } txtIdentificacion.requestFocusInWindow();
+       
+    }//GEN-LAST:event_cmbMostrarActionPerformed
+
+    private void cmbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLimpiarActionPerformed
+        int op=JOptionPane.showConfirmDialog(this, "¿Seguro Desea Eliminar Las Personas? ","Pregunta",JOptionPane.YES_NO_OPTION);
+        if (op==JOptionPane.YES_OPTION){
+            v.clear();
+        txtIdentificacion.setText("");
+        txtPrimerApellido.setText("");
+        txtPrimerNombre.setText("");
+        txtResultado.setText("");
+        txtIdentificacion.requestFocusInWindow();
+        }
+        
+    }//GEN-LAST:event_cmbLimpiarActionPerformed
+
+    private void cmbListarMujeresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbListarMujeresActionPerformed
+        String aux;
+       txtResultado.setText("");
+       int cont=0;
+       if(v.isEmpty()){
+           txtResultado.setText("No Hay Personas Que Mostrar");
+       }else{
+        for (int i = 0; i < v.size(); i++) {
+            if(v.get(i).getSexo().equalsIgnoreCase("Femenino")){
+            aux="Persona No. " + (i+1)+"\n"
+                    + "Identificacion: "+v.get(i).getIdentificacion()+"\n"
+                    + "Primer Nombre: "+v.get(i).getPrimer_nombre()+"\n"
+                    + "Primer Apellido: "+v.get(i).getPrimer_apellido()+"\n"
+                    + "Sexo: "+v.get(i).getSexo()+"\n\n";
+            
+            txtResultado.append(aux);
+            cont++;
+         }
+        }if(cont==0){
+            txtResultado.setText("No Hay Mujeres");}
+       } txtIdentificacion.requestFocusInWindow();
+    }//GEN-LAST:event_cmbListarMujeresActionPerformed
+
+    private void cmdCantidadDeMujeresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCantidadDeMujeresActionPerformed
+        String aux;
+        int cont=0;
+        for (int i = 0; i < v.size(); i++) {
+        if(v.get(i).getSexo().equalsIgnoreCase("Femenino")){
+           cont++;
+        }
+        aux=String.valueOf(cont);
+        txtResultado.setText(aux);
+        }
+        
+    }//GEN-LAST:event_cmdCantidadDeMujeresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,7 +360,10 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmbGuardar;
     private javax.swing.JButton cmbLimpiar;
+    private javax.swing.JButton cmbListarMujeres;
     private javax.swing.JButton cmbMostrar;
+    private javax.swing.JComboBox cmbSexo;
+    private javax.swing.JButton cmdCantidadDeMujeres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
